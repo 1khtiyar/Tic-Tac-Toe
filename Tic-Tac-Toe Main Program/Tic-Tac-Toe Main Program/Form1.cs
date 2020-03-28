@@ -75,218 +75,39 @@ namespace Tic_Tac_Toe_Main_Program
                     break;
             }
         }
-
-        private void Button1_Click(object sender, EventArgs e)
+        public void Click(Button button,int index)      //common method for each of buttons according to its object and index (for placing gameBoard array)
         {
-            if (button1.Text == "X" || button1.Text == "O")
+            if (button.Text == "X" || button.Text == "O")
             {
                 goto end;
             }
-            button1.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button1.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(1, button1.Text);
+            button.Text = turn % 2 == 0 ? "X" : "O";
+            this.BackColor = button.Text == "O" ? Color.Salmon : Color.LimeGreen;
+            Fill(index, button.Text);
             if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
+                    this.label4.Text = (Convert.ToInt32(this.label4.Text) + 1).ToString();
                 }
                 else if (winner == "O")
                 {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
+                    this.label5.Text = (Convert.ToInt32(this.label5.Text) + 1).ToString();
                 }
             }
         end:
             Form1.turn++;
         }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            if (button2.Text == "X" || button2.Text == "O")
-            {
-                goto end;
-            }
-            button2.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button2.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(2, button2.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            if (button3.Text == "X" || button3.Text == "O")
-            {
-                goto end;
-            }
-            button3.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button3.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(3, button3.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
-
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            if (button4.Text == "X" || button4.Text == "O")
-            {
-                goto end;
-            }
-            button4.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button4.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(4, button4.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            if (button5.Text == "X" || button5.Text == "O")
-            {
-                goto end;
-            }
-            button5.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button5.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(5, button5.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            if (button6.Text == "X" || button6.Text == "O")
-            {
-                goto end;
-            }
-            button6.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button6.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(6, button6.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
-        private void Button7_Click(object sender, EventArgs e)
-        {
-            if (button7.Text == "X" || button7.Text == "O")
-            {
-                goto end;
-            }
-            button7.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button7.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(7, button7.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
-        private void Button8_Click(object sender, EventArgs e)
-        {
-            if (button8.Text == "X" || button8.Text == "O")
-            {
-                goto end;
-            }
-            button8.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button8.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(8, button8.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
-        private void Button9_Click(object sender, EventArgs e)
-        {
-            if (button9.Text == "X" || button9.Text == "O")
-            {
-                goto end;
-            }
-            button9.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button9.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(9, button9.Text);
-            if (IsThereWinner(Form1.gameBoard, ref winner))
-            {
-                if (winner == "X")
-                {
-                    label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
-                }
-                else if (winner == "O")
-                {
-                    label5.Text = (Convert.ToInt32(label5.Text) + 1).ToString();
-                }
-            }
-        end:
-            Form1.turn++;
-        }
+        private void Button1_Click(object sender, EventArgs e) => Click(button1,1);
+        private void Button2_Click(object sender, EventArgs e) => Click(button2,2);
+        private void Button3_Click(object sender, EventArgs e) => Click(button3,3);
+        private void Button4_Click(object sender, EventArgs e) => Click(button4,4);
+        private void Button5_Click(object sender, EventArgs e) => Click(button5,5);
+        private void Button6_Click(object sender, EventArgs e) => Click(button6,6);
+        private void Button7_Click(object sender, EventArgs e) => Click(button7,7);
+        private void Button8_Click(object sender, EventArgs e) => Click(button8,8);
+        private void Button9_Click(object sender, EventArgs e) => Click(button9,9);
 
         private void QuitButton(object sender, EventArgs e) => this.Close();    //quit button
 
