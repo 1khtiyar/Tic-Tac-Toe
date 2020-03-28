@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Tic_Tac_Toe_Main_Program
@@ -14,6 +15,7 @@ namespace Tic_Tac_Toe_Main_Program
         public Form1()
         {
             InitializeComponent();
+            this.label3.Text = "o:";
             this.BackColor = Color.Gray;
             for (int i = 0; i < 3; i++)
             {
@@ -75,15 +77,27 @@ namespace Tic_Tac_Toe_Main_Program
                     break;
             }
         }
+
+
         public void Click(Button button,int index)      //common method for each of buttons according to its object and index (for placing gameBoard array)
         {
+            if (turn % 2 == 0)
+            {
+                this.label2.Text = "x:";
+                this.label3.Text = "O:";
+            }
+            else
+            {
+                this.label2.Text = "X:";
+                this.label3.Text = "o:";
+            }
+            string buttonText = button.Text;
             if (button.Text == "X" || button.Text == "O")
             {
                 goto end;
             }
-            button.Text = turn % 2 == 0 ? "X" : "O";
-            this.BackColor = button.Text == "O" ? Color.Salmon : Color.LimeGreen;
-            Fill(index, button.Text);
+            buttonText = turn % 2 == 0 ? "X" : "O";
+            Fill(index, buttonText);
             if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
@@ -94,7 +108,9 @@ namespace Tic_Tac_Toe_Main_Program
                 {
                     this.label5.Text = (Convert.ToInt32(this.label5.Text) + 1).ToString();
                 }
+                this.button11.BackColor = Color.Red;
             }
+            button.Text = buttonText;
         end:
             Form1.turn++;
         }
@@ -117,6 +133,8 @@ namespace Tic_Tac_Toe_Main_Program
             //Next Round
             //Checking if someone won then allow to increase round number:
             label7.Text = IsThereWinner(Form1.gameBoard, ref winner) ? (Convert.ToInt32(label7.Text) + 1).ToString() : label7.Text;
+
+            this.button11.BackColor = Color.Gainsboro;
 
             //Clear array
             for (int i = 0; i < 3; i++)
