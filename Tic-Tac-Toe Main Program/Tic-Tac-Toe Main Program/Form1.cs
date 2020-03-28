@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Tic_Tac_Toe_Main_Program
@@ -14,9 +8,7 @@ namespace Tic_Tac_Toe_Main_Program
     {
         public static int turn = 0;
         public static string sign = turn % 2 == 0 ? "X" : "O";
-
         public static string[,] gameBoard = new string[3, 3];
-        public static List<int> commands = new List<int>();
         public static string winner = " ";
 
         public Form1()
@@ -32,7 +24,7 @@ namespace Tic_Tac_Toe_Main_Program
             }
         }
 
-        public static bool isThereWinner(string[,] array, ref string winner)
+        public static bool IsThereWinner(string[,] array, ref string winner)
         {
             bool result = false;
             for (int i = 0; i < 3; i++)
@@ -83,17 +75,8 @@ namespace Tic_Tac_Toe_Main_Program
                     break;
             }
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            this.BackColor = Color.Salmon;
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if (button1.Text == "X" || button1.Text == "O")
             {
@@ -102,7 +85,7 @@ namespace Tic_Tac_Toe_Main_Program
             button1.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button1.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(1, button1.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -117,7 +100,7 @@ namespace Tic_Tac_Toe_Main_Program
             Form1.turn++;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             if (button2.Text == "X" || button2.Text == "O")
             {
@@ -126,7 +109,7 @@ namespace Tic_Tac_Toe_Main_Program
             button2.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button2.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(2, button2.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -141,7 +124,7 @@ namespace Tic_Tac_Toe_Main_Program
             Form1.turn++;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             if (button3.Text == "X" || button3.Text == "O")
             {
@@ -150,7 +133,7 @@ namespace Tic_Tac_Toe_Main_Program
             button3.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button3.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(3, button3.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -165,7 +148,7 @@ namespace Tic_Tac_Toe_Main_Program
             Form1.turn++;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             if (button4.Text == "X" || button4.Text == "O")
             {
@@ -174,7 +157,7 @@ namespace Tic_Tac_Toe_Main_Program
             button4.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button4.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(4, button4.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -189,7 +172,7 @@ namespace Tic_Tac_Toe_Main_Program
             Form1.turn++;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             if (button5.Text == "X" || button5.Text == "O")
             {
@@ -198,7 +181,7 @@ namespace Tic_Tac_Toe_Main_Program
             button5.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button5.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(5, button5.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -221,7 +204,7 @@ namespace Tic_Tac_Toe_Main_Program
             button6.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button6.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(6, button6.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -244,7 +227,7 @@ namespace Tic_Tac_Toe_Main_Program
             button7.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button7.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(7, button7.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -267,7 +250,7 @@ namespace Tic_Tac_Toe_Main_Program
             button8.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button8.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(8, button8.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -290,7 +273,7 @@ namespace Tic_Tac_Toe_Main_Program
             button9.Text = turn % 2 == 0 ? "X" : "O";
             this.BackColor = button9.Text == "O" ? Color.Salmon : Color.LimeGreen;
             Fill(9, button9.Text);
-            if (isThereWinner(Form1.gameBoard, ref winner))
+            if (IsThereWinner(Form1.gameBoard, ref winner))
             {
                 if (winner == "X")
                 {
@@ -312,8 +295,7 @@ namespace Tic_Tac_Toe_Main_Program
         {
             //Next Round
             //Checking if someone won then allow to increase round number:
-            label7.Text = isThereWinner(Form1.gameBoard, ref winner) ? (Convert.ToInt32(label7.Text) + 1).ToString() : label7.Text;
-
+            label7.Text = IsThereWinner(Form1.gameBoard, ref winner) ? (Convert.ToInt32(label7.Text) + 1).ToString() : label7.Text;
 
             //Clear array
             for (int i = 0; i < 3; i++)
@@ -345,6 +327,7 @@ namespace Tic_Tac_Toe_Main_Program
                     Form1.gameBoard[i, j] = " ";
                 }
             }
+
             button1.Text = null;
             button2.Text = null;
             button3.Text = null;
