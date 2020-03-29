@@ -85,20 +85,18 @@ namespace Tic_Tac_Toe_Main_Program
         {
             string buttonText = button.Text;
             if (buttonText == "X" || buttonText == "O" || blockGame)
-            {
-                goto end;
-            }
-            if (turn % 2 == 0)
+                return;
+            if (Form1.turn % 2 == 0)
             {
                 this.label2.Text = "x:";
                 this.label3.Text = "O:";
             }
-            else
+            else if(Form1.turn % 2 != 0)
             {
                 this.label2.Text = "X:";
                 this.label3.Text = "o:";
             }
-            buttonText = turn % 2 == 0 ? "X" : "O";
+            buttonText = Form1.turn % 2 == 0 ? "X" : "O";
             Fill(index, buttonText);
             if (IsThereWinner(Form1.gameBoard, ref winner))
             {
@@ -115,7 +113,6 @@ namespace Tic_Tac_Toe_Main_Program
             }
             button.Text = buttonText;
             Form1.turn++;
-        end:;
         }
 
         private void Button1_Click(object sender, EventArgs e) => Click(button1,1);
@@ -134,11 +131,32 @@ namespace Tic_Tac_Toe_Main_Program
         private void NextRoundButton(object sender, EventArgs e)
         {
             //Next Round
-            //Checking if someone won then allow to increase round number:
-            label7.Text = IsThereWinner(Form1.gameBoard, ref winner) ? (Convert.ToInt32(label7.Text) + 1).ToString() : label7.Text;
-
+            //Checking if someone won then allow to increase round number, else break the method
+            if (IsThereWinner(Form1.gameBoard, ref winner))
+            {
+                label7.Text = (Convert.ToInt32(label7.Text) + 1).ToString();
+            }
+            else
+                return;
+            if (Form1.turn % 2 == 0)
+            {
+                this.label2.Text = "x:";
+                this.label3.Text = "O:";
+            }
+            else if (Form1.turn % 2 != 0)
+            {
+                this.label2.Text = "X:";
+                this.label3.Text = "o:";
+            }
             blockGame = false;
-            turn = 1;
+            if (winner=="O")
+            {
+                Form1.turn = 1;
+            }
+            else if (winner=="X")
+            {
+                Form1.turn = 0;
+            }
             this.button11.BackColor = Color.Gainsboro;
 
             //Clear array
@@ -171,9 +189,19 @@ namespace Tic_Tac_Toe_Main_Program
                     Form1.gameBoard[i, j] = " ";
                 }
             }
+            if (Form1.turn % 2 == 0)
+            {
+                this.label2.Text = "x:";
+                this.label3.Text = "O:";
+            }
+            else if (Form1.turn % 2 != 0)
+            {
+                this.label2.Text = "X:";
+                this.label3.Text = "o:";
+            }
 
             blockGame = false;
-            turn = 1;
+            Form1.turn = 0;
             button1.Text = null;
             button2.Text = null;
             button3.Text = null;
