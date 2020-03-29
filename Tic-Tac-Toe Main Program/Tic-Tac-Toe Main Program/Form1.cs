@@ -78,9 +78,16 @@ namespace Tic_Tac_Toe_Main_Program
             }
         }
 
+        public static bool blockGame=false; //become true when there is a winnner, to restrict clicking for user on game board
+        //the  blockGame var should be switched off in next round of game (corrections on NextRoundButton)
 
         public void Click(Button button,int index)      //common method for each of buttons according to its object and index (for placing gameBoard array)
         {
+            string buttonText = button.Text;
+            if (buttonText == "X" || buttonText == "O" || blockGame)
+            {
+                goto end;
+            }
             if (turn % 2 == 0)
             {
                 this.label2.Text = "x:";
@@ -90,11 +97,6 @@ namespace Tic_Tac_Toe_Main_Program
             {
                 this.label2.Text = "X:";
                 this.label3.Text = "o:";
-            }
-            string buttonText = button.Text;
-            if (button.Text == "X" || button.Text == "O")
-            {
-                goto end;
             }
             buttonText = turn % 2 == 0 ? "X" : "O";
             Fill(index, buttonText);
@@ -109,10 +111,11 @@ namespace Tic_Tac_Toe_Main_Program
                     this.label5.Text = (Convert.ToInt32(this.label5.Text) + 1).ToString();
                 }
                 this.button11.BackColor = Color.Red;
+                blockGame = true;
             }
             button.Text = buttonText;
-        end:
             Form1.turn++;
+        end:;
         }
 
         private void Button1_Click(object sender, EventArgs e) => Click(button1,1);
@@ -134,6 +137,8 @@ namespace Tic_Tac_Toe_Main_Program
             //Checking if someone won then allow to increase round number:
             label7.Text = IsThereWinner(Form1.gameBoard, ref winner) ? (Convert.ToInt32(label7.Text) + 1).ToString() : label7.Text;
 
+            blockGame = false;
+            turn = 1;
             this.button11.BackColor = Color.Gainsboro;
 
             //Clear array
@@ -167,6 +172,8 @@ namespace Tic_Tac_Toe_Main_Program
                 }
             }
 
+            blockGame = false;
+            turn = 1;
             button1.Text = null;
             button2.Text = null;
             button3.Text = null;
