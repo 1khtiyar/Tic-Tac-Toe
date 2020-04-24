@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +37,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +49,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -65,7 +92,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,6 +107,129 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellOSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellXSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellOVerySmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellXVerySmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellOLast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ForCellXLast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TranspBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CellSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PressedCellSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackNew1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackLast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameBoard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LongDownBoard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NextRoundRedButton.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CellGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CellRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CellUndefO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CellUndefX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CellUndefOSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CellUndefXSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackNewBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TheButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TheButtonRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TheGameBoard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TheLongButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TheLongButtonMiddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OsymbolSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\XsymbolSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
