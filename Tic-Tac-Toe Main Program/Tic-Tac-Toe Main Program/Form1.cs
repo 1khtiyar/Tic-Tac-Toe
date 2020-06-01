@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Text;
-using System.Drawing.Text;
 
 namespace Tic_Tac_Toe_Main_Program
 {
@@ -11,7 +9,8 @@ namespace Tic_Tac_Toe_Main_Program
         public static int turn = 0;
         public static string[,] gameBoard = new string[3, 3];
         public static string winner = " ";
-        public Buttons buttons=new Buttons(3,3);
+        public Buttons buttons = new Buttons(3, 3);
+
         public GameForm()
         {
             InitializeComponent();
@@ -19,36 +18,29 @@ namespace Tic_Tac_Toe_Main_Program
             buttons[0, 0] = button1; buttons[0, 1] = button2; buttons[0, 2] = button3;
             buttons[1, 0] = button4; buttons[1, 1] = button5; buttons[1, 2] = button6;
             buttons[2, 0] = button7; buttons[2, 1] = button8; buttons[2, 2] = button9;
+
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
                     GameForm.gameBoard[i, j] = " ";
-                    buttons[i,j].BackgroundImage=turn%2==0? global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall:
+                    buttons[i, j].BackgroundImage = turn % 2 == 0 ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall :
                         global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefOSmall;
                 }
             }
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
 
-        public static bool isCrowded()
+        private bool isCrowded()
         {
             for (int i = 0; i < 3; i++)
-            {
                 for (int j = 0; j < 3; j++)
-                {
-                    if (GameForm.gameBoard[i,j]=="" || GameForm.gameBoard[i, j] == " ")
-                    {
+                    if (GameForm.gameBoard[i, j] == "" || GameForm.gameBoard[i, j] == " ")
                         return false;
-                    }
-                }
-            }
+
             return true;
         }
 
-        public static bool IsThereWinner(string[,] array, ref string winner)
+        private bool IsThereWinner(string[,] array, ref string winner)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -76,7 +68,7 @@ namespace Tic_Tac_Toe_Main_Program
             return false;
         }
 
-        public static bool blockGame=false; //become true when there is a winnner, to restrict clicking for user on game board
+        public static bool blockGame = false; //become true when there is a winnner, to restrict clicking for user on game board
         //the  blockGame var should be switched off in next round of game (corrections on NextRoundButton)
 
         public new void Click(Button button, byte rowPosition, byte columnPosition)      //common method for each of buttons according to its object and index (for placing gameBoard array)
@@ -88,7 +80,7 @@ namespace Tic_Tac_Toe_Main_Program
             {
                 buttonText = "X";
                 button.BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall;
-                button.Image =global::Tic_Tac_Toe_Main_Program.Properties.Resources.ForCellXLast;
+                button.Image = global::Tic_Tac_Toe_Main_Program.Properties.Resources.ForCellXLast;
             }
             else
             {
@@ -96,7 +88,9 @@ namespace Tic_Tac_Toe_Main_Program
                 button.BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefOSmall;
                 button.Image = global::Tic_Tac_Toe_Main_Program.Properties.Resources.ForCellOLast;
             }
+
             GameForm.gameBoard[rowPosition, columnPosition] = buttonText;
+
             if (IsThereWinner(GameForm.gameBoard, ref winner))
             {
                 if (winner == "X")
@@ -107,8 +101,9 @@ namespace Tic_Tac_Toe_Main_Program
                 {
                     this.counterLabelOs.Text = (Convert.ToInt32(this.counterLabelOs.Text) + 1).ToString();
                 }
-                this.nextRoundButton.BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.ButtonRed;
-                this.nextRoundButton.Cursor = System.Windows.Forms.Cursors.Hand;
+
+                HandleNextRoundButtonsProperties(true);
+
                 blockGame = true;
                 return;
             }
@@ -118,10 +113,9 @@ namespace Tic_Tac_Toe_Main_Program
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (buttons[i,j].Text!="")
-                    {
+                    if (buttons[i, j].Text != "")
                         continue;
-                    }
+
                     buttons[i, j].BackgroundImage = buttonText == "O" ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall :
                     global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefOSmall;
                 }
@@ -129,8 +123,8 @@ namespace Tic_Tac_Toe_Main_Program
             if (isCrowded())
             {
                 GameForm.blockGame = true;
-                nextRoundButton.BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.ButtonRed;
-                nextRoundButton.Cursor = System.Windows.Forms.Cursors.Hand;
+
+                HandleNextRoundButtonsProperties(true);
             }
         }
 
@@ -144,26 +138,36 @@ namespace Tic_Tac_Toe_Main_Program
         private void Button8_Click(object sender, EventArgs e) => Click(button8, 2, 1);
         private void Button9_Click(object sender, EventArgs e) => Click(button9, 2, 2);
 
-        private void QuitButtonClick(object sender, EventArgs e) => this.Close();    //quit button
-
+        private void QuitButtonClick(object sender, EventArgs e) => this.Close();
 
         private void NextRoundButtonClick(object sender, EventArgs e)
         {
-            //Next Round
-            //Checking if someone won then allow to increase round number, else break the method
             if (IsThereWinner(GameForm.gameBoard, ref winner) || isCrowded())
             {
                 roundCounterLabel.Text = (Convert.ToInt32(roundCounterLabel.Text) + 1).ToString();
                 GameForm.turn = winner == "O" ? 1 : 0;
             }
             else
-            {
                 return;
-            }
+
             blockGame = false;
-            this.nextRoundButton.BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.TheButton;
-            this.nextRoundButton.Cursor = System.Windows.Forms.Cursors.No;
-            //Clear arrays
+
+            HandleNextRoundButtonsProperties(false);
+            ClearBoardAndArray("Clear");
+        }
+
+        private void RestartButtonClick(object sender, EventArgs e)
+        {
+            HandleNextRoundButtonsProperties(false);
+            ClearBoardAndArray("Restart");
+
+            blockGame = false;
+            GameForm.turn = 0;
+            counterLabelXs.Text = counterLabelOs.Text = roundCounterLabel.Text = "0";
+        }
+
+        private void ClearBoardAndArray(string typeOfOperation)
+        {
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -171,43 +175,28 @@ namespace Tic_Tac_Toe_Main_Program
                     GameForm.gameBoard[i, j] = " ";
                     buttons[i, j].Text = null;
                     buttons[i, j].Image = null;
-                    buttons[i, j].BackgroundImage = turn % 2 == 0 ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall :
+                    if (typeOfOperation == "Restart")
+                        buttons[i, j].BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall;
+                    else
+                        buttons[i, j].BackgroundImage = turn % 2 == 0 ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall :
                         global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefOSmall;
                 }
             }
         }
 
-        private void RestartButtonClick(object sender, EventArgs e)
+        private void HandleNextRoundButtonsProperties(bool isActive) //false - make it disabled;  true - enabled;
         {
-            //Reset
-            //Clear array and all buttons' text
-            this.nextRoundButton.Cursor = System.Windows.Forms.Cursors.No;
-            nextRoundButton.BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.TheButton;
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    GameForm.gameBoard[i, j] = " ";
-                    buttons[i, j].Text = null;
-                    buttons[i, j].Image = null;
-                    buttons[i, j].BackgroundImage = global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall;
-                }
-            }
-            blockGame = false;
-            GameForm.turn = 0;
-            counterLabelXs.Text = "0";
-            counterLabelOs.Text = "0";
-            roundCounterLabel.Text = "0";
+            nextRoundButton.BackgroundImage = isActive ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.ButtonRed : global::Tic_Tac_Toe_Main_Program.Properties.Resources.TheButton;
+            nextRoundButton.Cursor = isActive ? System.Windows.Forms.Cursors.Hand : System.Windows.Forms.Cursors.No;
         }
 
     }
-    public class Buttons:Button
+    public class Buttons : Button
     {
         Button[,] buttonsGroup;
-        public Buttons(int rows, int columns)
-        {
-            buttonsGroup = new Button[rows, columns];
-        }
+
+        public Buttons(int rows, int columns) => buttonsGroup = new Button[rows, columns];
+
         public Button this[int i, int j]
         {
             get
