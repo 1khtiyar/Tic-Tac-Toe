@@ -71,7 +71,8 @@ namespace Tic_Tac_Toe_Main_Program
         public static bool blockGame = false; //become true when there is a winnner, to restrict clicking for user on game board
         //the  blockGame var should be switched off in next round of game (corrections on NextRoundButton)
 
-        public new void Click(Button button, byte rowPosition, byte columnPosition)      //common method for each of buttons according to its object and index (for placing gameBoard array)
+        //common method for each of buttons according to its object and index (for placing gameBoard array)
+        public new void Click(Button button, byte rowPosition, byte columnPosition)
         {
             string buttonText = button.Text;
             if (buttonText == "X" || buttonText == "O" || blockGame)
@@ -107,19 +108,12 @@ namespace Tic_Tac_Toe_Main_Program
                 blockGame = true;
                 return;
             }
+
             button.Text = buttonText;
             GameForm.turn++;
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (buttons[i, j].Text != "")
-                        continue;
 
-                    buttons[i, j].BackgroundImage = buttonText == "O" ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall :
-                    global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefOSmall;
-                }
-            }
+            RefreshGameBoard(buttonText);
+
             if (isCrowded())
             {
                 GameForm.blockGame = true;
@@ -184,13 +178,31 @@ namespace Tic_Tac_Toe_Main_Program
             }
         }
 
-        private void HandleNextRoundButtonsProperties(bool isActive) //false - make it disabled;  true - enabled;
+        //false - make it disabled;  true - enabled;
+        private void HandleNextRoundButtonsProperties(bool isActive)
         {
             nextRoundButton.BackgroundImage = isActive ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.ButtonRed : global::Tic_Tac_Toe_Main_Program.Properties.Resources.TheButton;
             nextRoundButton.Cursor = isActive ? System.Windows.Forms.Cursors.Hand : System.Windows.Forms.Cursors.No;
         }
 
+        private void RefreshGameBoard(string currentPlayer)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (!string.IsNullOrEmpty(buttons[i, j].Text))
+                        continue;
+
+                    buttons[i, j].BackgroundImage = currentPlayer == "O" ? global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefXSmall :
+                    global::Tic_Tac_Toe_Main_Program.Properties.Resources.CellUndefOSmall;
+                }
+            }
+        }
     }
+
+
+
     public class Buttons : Button
     {
         Button[,] buttonsGroup;
